@@ -1,10 +1,23 @@
-const fetch = require("isomorphic-fetch");
+const { Webhook } = require('discord-webhook-node')
+const readline = require("readline-sync")
 
-var hook = prompt("Enter Discord Webhook");
-var message = prompt("What do you want to say?");
+const hook = new Webhook(process.env.Webhook);
+
+// Send Text
+function send() {
+var text = readline.question('Whatever you want?');
+hook.send(text);
+}
+
+function start() {
+var question = readline.question('Choose an option (send)>')
+if(question=='send'){
+  send()
+}
+}
+
+start()
 
 
-fetch(hook,
-      {"method": "POST", "headers": {"content-type": "application/json"},
-       "body": JSON.stringify(message)});
+webhook.send(text)
 
